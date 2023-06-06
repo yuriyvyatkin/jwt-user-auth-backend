@@ -21,8 +21,14 @@ app.use(express.json());
 // API routes
 app.use('/api/user', userRoutes);
 
+// Check server health
 app.get('/', (req, res) => {
-  res.send('Server is running.');
+  res.send('Server is running');
+});
+
+// Serve favicon.ico
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'favicon.ico'));
 });
 
 // Middleware
