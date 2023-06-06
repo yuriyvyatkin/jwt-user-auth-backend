@@ -2,12 +2,9 @@ version: '3.8'
 services:
   web:
     build:
-      context: .
-      target: dev
-    volumes:
-      - .:/src
+      context: ./
     ports:
-      - '5000:5000'
+      - "5000:5000"
     environment:
-      - NODE_ENV=development
-    command: npm run dev
+      NODE_ENV: production
+    command: npm start
