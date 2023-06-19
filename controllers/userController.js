@@ -14,12 +14,14 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // create new user document in db
-  const user = await User.create({ name, email, password });
+  const user = await User.create({ name, age, gender, email, password });
 
   if (user) {
     res.status(201).json({
       _id: user._id,
       name: user.name,
+      age: user.age,
+      gender: user.gender,
       email: user.email,
     });
   } else {
@@ -56,6 +58,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.json({
       id: user._id,
       name: user.name,
+      age: user.age,
+      gender: user.gender,
       email: user.email,
     });
   } else {
