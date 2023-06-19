@@ -3,7 +3,7 @@ import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { firstName, email, password } = req.body;
+  const { name, email, password } = req.body;
 
   // check if email exists in db
   const userExists = await User.findOne({ email });
@@ -14,12 +14,12 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // create new user document in db
-  const user = await User.create({ firstName, email, password });
+  const user = await User.create({ name, email, password });
 
   if (user) {
     res.status(201).json({
       _id: user._id,
-      firstName: user.firstName,
+      name: user.name,
       email: user.email,
     });
   } else {
@@ -38,7 +38,7 @@ const loginUser = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      firstName: user.firstName,
+      name: user.name,
       email: user.email,
       userToken: generateToken(user._id),
     });
@@ -55,7 +55,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     res.json({
       id: user._id,
-      firstName: user.firstName,
+      name: user.name,
       email: user.email,
     });
   } else {
