@@ -3,7 +3,7 @@ import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, age, gender, email, password } = req.body;
 
   // check if email exists in db
   const userExists = await User.findOne({ email });
