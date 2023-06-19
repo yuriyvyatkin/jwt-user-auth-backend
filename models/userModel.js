@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema(
       required: true,
     },
     age: {
-      type: Integer,
+      type: Number,
       required: true,
     },
     gender: {
